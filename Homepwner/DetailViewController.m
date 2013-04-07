@@ -13,7 +13,9 @@
 
 
 @interface DetailViewController ()
-
+{
+    BOOL _isNew;
+}
 @end
 
 @implementation DetailViewController
@@ -24,6 +26,8 @@
 - (id)initForNewItem:(BOOL)isNew
 {
     self = [super initWithNibName:@"DetailViewController" bundle:nil];
+    
+    _isNew = isNew;
     
     if (self) {
         if (isNew) {
@@ -63,6 +67,10 @@
     }
     
     [self.view setBackgroundColor:clr];
+    
+    if (_isNew) {
+        [nameField becomeFirstResponder];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
